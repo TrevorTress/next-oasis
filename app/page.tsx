@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 const HomeComp: FC<{ className?: string }> = ({ className }) => {
-	return <div className={className}>Hello</div>;
+	return <></>;
 };
 
 const Home = styled(HomeComp)``;
