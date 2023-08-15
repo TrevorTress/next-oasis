@@ -17,50 +17,59 @@ const Dashboard: FC<{ className?: string }> = ({ className }) => {
 		return position < 0 ? 'hideRight' : 'hideLeft';
 	};
 
-	const items = ['https://i1.sndcdn.com/artworks-000165384395-rhrjdn-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000185743981-tuesoj-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000062423439-lf7ll2-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000028787381-1vad7y-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000108468163-dp0b6y-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000064920701-xrez5z-t500x500.jpg'];
+	const items = ['https://i1.sndcdn.com/artworks-000165384395-rhrjdn-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000185743981-tuesoj-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000158708482-k160g1-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000062423439-lf7ll2-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000028787381-1vad7y-t500x500.jpg', 'https://i1.sndcdn.com/artworks-000108468163-dp0b6y-t500x500.jpg'];
 
 	useEffect(() => {
-		const updatedItemClasses = items.map((item, index) => getSlideClass(index));
+		const updatedItemClasses = items.map((_, index) => getSlideClass(index));
 		setItemClasses(updatedItemClasses);
-	}, []);
+	}, [slide]);
 
-	return (
-		<div
-			id="carousel"
-			className={className}
-		>
-			{items.map((item, index) => (
-				<div
-					key={index}
-					className={`carousel-item ${itemClasses[index]}`}
-					onClick={() => setSlide(index)}
-				>
-					<img
-						src={item}
-						alt={`Item ${index}`}
-					/>
-				</div>
-			))}
-		</div>
-	);
+	if (itemClasses.length > 0) {
+		return (
+			<div
+				id="carousel"
+				className={className}
+			>
+				{items.map((item, index) => (
+					<div
+						key={index}
+						className={`carousel-item ${itemClasses[index]}`}
+						onClick={() => setSlide(index)}
+					>
+						<img
+							src={item}
+							alt={`Item ${index}`}
+						/>
+						<div className="carousel-label">Item {index + 1}</div>
+					</div>
+				))}
+			</div>
+		);
+	}
 };
 
 export default styled(Dashboard)`
-	& #carousel {
+	#carousel {
 		height: 400px;
 		top: 50%;
-
 		overflow: hidden;
 	}
 
 	.carousel-item {
 		position: absolute;
+		top: 18vh;
 		transition: transform 1s, left 1s, opacity 1s, z-index 0s;
 		opacity: 1;
 
 		img {
-			width: 400px;
-			transition: width 1s;
+			width: 19vw;
+			height: 40vh;
+			transition: all 0.5s;
+
+			&:hover {
+				filter: brightness(0.9);
+				transform: scale(1.01);
+			}
 		}
 	}
 
@@ -74,57 +83,51 @@ export default styled(Dashboard)`
 		left: 100%;
 		opacity: 0;
 		transform: translateY(50%) translateX(-50%);
-
-		img {
-			width: 200px;
-		}
 	}
 
 	.prev {
 		z-index: 5;
 		left: 30%;
-		transform: translateY(50px) translateX(-50%);
+		transform: translateY(-3%) translateX(-50%);
+	}
 
-		img {
-			width: 300px;
-		}
+	.next {
+		z-index: 5;
+		left: 70%;
+		transform: translateY(-3%) translateX(-50%);
 	}
 
 	.prevLeftSecond {
 		z-index: 4;
-		left: 15%;
-		transform: translateY(50%) translateX(-50%);
+		left: 10%;
+		transform: translateY(-6%) translateX(-50%);
 		opacity: 0.7;
+	}
 
-		img {
-			width: 200px;
-		}
+	.nextRightSecond {
+		z-index: 4;
+		left: 90%;
+		transform: translateY(-6%) translateX(-50%);
+		opacity: 0.7;
 	}
 
 	.selected {
 		z-index: 10;
 		left: 50%;
 		transform: translateY(0px) translateX(-50%);
-	}
-
-	.next {
-		z-index: 5;
-		left: 70%;
-		transform: translateY(50px) translateX(-50%);
 
 		img {
-			width: 300px;
 		}
 	}
 
-	.nextRightSecond {
-		z-index: 4;
-		left: 85%;
-		transform: translateY(50%) translateX(-50%);
-		opacity: 0.7;
+	.carousel-label {
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		color: white;
 
-		img {
-			width: 200px;
-		}
+		padding: 5px 10px;
+		border-radius: 4px;
+		font-size: 12px;
 	}
 `;

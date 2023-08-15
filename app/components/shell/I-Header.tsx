@@ -20,7 +20,7 @@ export default styled(Header)`
 	width: 100%;
 	height: var(--header-height);
 	padding: 0.8vh 0.4vw;
-	border-bottom: solid black;
+	border-bottom: solid #d3d3d36e 2px;
 	z-index: 100;
 
 	.header-left {
