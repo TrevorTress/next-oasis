@@ -20,6 +20,7 @@ const Container = styled(ContainerComp)`
 	align-items: center;
 	height: calc(100vh - var(--header-height) - var(--footer-height)); // (page - header - footer)
 	width: 100%;
+	overflow: auto;
 
 	// mobile adjustments
 	@media screen and (max-width: 480px) {

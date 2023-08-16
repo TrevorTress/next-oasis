@@ -50,9 +50,8 @@ const Carousel: FC<{ className?: string }> = ({ className }) => {
 
 export default styled(Carousel)`
 	height: 52vh;
-	width: 100%;
+	width: 95vw;
 	position: relative;
-	overflow: hidden;
 
 	.carousel-item {
 		position: absolute;

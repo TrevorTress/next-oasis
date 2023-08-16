@@ -35,7 +35,7 @@ export default styled(Header)`
 		h1 {
 			display: block;
 			height: 100%;
-			width: 15vw;
+			width: 100%;
 			margin: auto;
 			color: #000;
 		}
