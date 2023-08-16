@@ -5,7 +5,7 @@ const Header: React.FC<{ className?: string }> = ({ className }) => {
 	return (
 		<header className={className}>
 			<div className="header-left">
-				<img src="/logo.png" />
+				<img src="assets/shell/logo.png" />
 			</div>
 			<div className="header-right"></div>
 		</header>
@@ -13,7 +13,6 @@ const Header: React.FC<{ className?: string }> = ({ className }) => {
 };
 
 export default styled(Header)`
-	background: var(--header-background);
 	position: fixed;
 	display: flex;
 	justify-content: space-between;
